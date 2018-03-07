@@ -1,5 +1,4 @@
 import React from 'react';
-import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
@@ -18,7 +17,5 @@ class App extends React.Component {
     );
   }
 }
-
-AppRegistry.registerComponent('App', () => App);
 
 export default App;
