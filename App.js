@@ -1,27 +1,21 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
-import React, { Component } from 'react';
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
-import logger from 'redux-logger'
+import AppReducer from './src/reducers';
+import AppWithNavigationState from './src/navigators/AppNavigator';
+import { middleware } from './src/utils/redux';
 
-import navigation from './src/reducer'
+const store = createStore(AppReducer, applyMiddleware(middleware));
 
-import Navigator from './src/Navigator'
-
-const reducer = combineReducers({ navigation })
-const store = createStore(reducer, applyMiddleware(logger))
-
-export default class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Navigator/>
+        <AppWithNavigationState />
       </Provider>
     );
   }
 }
+
+export default App;
